@@ -8,6 +8,7 @@
 // extern "C" tells C++ compiler exports the symbols without a name manging.
 extern "C" {
   #endif
+  int variant_version();
   void cn_hash(const void* in, size_t len, void* out);
   #ifdef __cplusplus
 }

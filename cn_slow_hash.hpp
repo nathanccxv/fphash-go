@@ -220,6 +220,27 @@ class cn_slow_hash
 		}
 	}
 
+	int variant_version()
+	{
+		int avx2_val = 0;
+		if(check_avx2) avx2_val = 10;
+
+		if(VERSION <= 1)
+		{
+			if(hw_check_aes() && !check_override())
+				return avx2_val + 1;
+			else
+				return avx2_val + 2;
+		}
+		else
+		{
+			if(hw_check_aes() && !check_override())
+				return avx2_val + 3;
+			else
+				return avx2_val + 4;
+		}
+	}
+
 	void software_hash(const void* in, size_t len, void* out);
 	void software_hash_3(const void* in, size_t len, void* pout);
 
