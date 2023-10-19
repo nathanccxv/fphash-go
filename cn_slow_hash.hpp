@@ -63,6 +63,8 @@
 #define cn_v2_hash_t cn_slow_hash<4 * 1024 * 1024, 0x40000, 1>
 // Cryptonight-GPU
 #define cn_v3_hash_t cn_slow_hash<2 * 1024 * 1024, 0xC000, 2>
+// Cryptonote-GPU Light
+#define cn_v4_hash_t cn_slow_hash<32 * 1024, 0x300, 2>
 
 // Use the types below
 template <size_t MEMORY, size_t ITER, size_t VERSION>
@@ -70,6 +72,7 @@ class cn_slow_hash;
 using cn_pow_hash_v1 = cn_v1_hash_t;
 using cn_pow_hash_v2 = cn_v2_hash_t;
 using cn_pow_hash_v3 = cn_v3_hash_t;
+using cn_pow_hash_v4 = cn_v4_hash_t;
 
 #ifdef HAS_INTEL_HW
 inline void cpuid(uint32_t eax, int32_t ecx, int32_t val[4])
@@ -261,6 +264,7 @@ class cn_slow_hash
 	friend cn_pow_hash_v1;
 	friend cn_pow_hash_v2;
 	friend cn_pow_hash_v3;
+	friend cn_pow_hash_v4;
 
 	// Constructor enabling v1 hash to borrow v2's buffer
 	cn_slow_hash(void* lptr, void* sptr)
@@ -330,3 +334,4 @@ class cn_slow_hash
 extern template class cn_v1_hash_t;
 extern template class cn_v2_hash_t;
 extern template class cn_v3_hash_t;
+extern template class cn_v4_hash_t;
