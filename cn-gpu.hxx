@@ -1,5 +1,5 @@
-#ifndef WRAP_H
-#define WRAP_H
+#ifndef CN_GPU_H
+#define CN_GPU_H
 
 #include <stddef.h>
 
@@ -8,8 +8,10 @@
 // extern "C" tells C++ compiler exports the symbols without a name manging.
 extern "C" {
   #endif
-  int variant_version();
-  void cn_hash(const void* in, size_t len, void* out);
+  void* new_ctx();
+  void del_ctx(void* ctx);
+  int variant_version(void* ctx);
+  void cn_hash(void* ctx, const void* in, size_t len, void* out);
   #ifdef __cplusplus
 }
 #endif
