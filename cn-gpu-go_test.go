@@ -3,8 +3,8 @@ package cngpugo
 import (
 	"fmt"
 	"math/rand"
-	"time"
 	"testing"
+	"time"
 )
 
 func TestHash(t *testing.T) {

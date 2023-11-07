@@ -5,8 +5,8 @@ package cngpugo
 import "C"
 
 import (
-	"unsafe"
 	"sync"
+	"unsafe"
 )
 
 type Ctx struct {
@@ -16,18 +16,16 @@ type Ctx struct {
 var ctx *Ctx
 var once sync.Once
 
-func getCtx() *Ctx{
+func getCtx() *Ctx {
 	once.Do(func() {
 		ctx = &Ctx{cn_ctx: C.new_ctx()}
 	})
 	return ctx
 }
 
-
 func Variant_version() int {
 	return int(C.variant_version(getCtx().cn_ctx))
 }
-
 
 func Hash(input []uint8) [32]uint8 {
 	out := [32]uint8{}
@@ -43,4 +41,3 @@ func Hash(input []uint8) [32]uint8 {
 	)
 	return out
 }
-
