@@ -1,7 +1,10 @@
 package fphash
 
+// #cgo CFLAGS: -I${SRCDIR}/include
+// #cgo CXXFLAGS: -I${SRCDIR}/include_boost_107400
 // #cgo CXXFLAGS: -std=c++11 -mavx2 -msse2 -maes
-// #cgo LDFLAGS: -static-libstdc++ -static-libgcc
+// #cgo !darwin LDFLAGS: -static-libstdc++ -static-libgcc
+// #cgo darwin LDFLAGS: -static-libstdc++
 // #include "fphash.hxx"
 import "C"
 
