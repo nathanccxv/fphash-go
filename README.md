@@ -1,3 +1,5 @@
+[![Test](https://github.com/CyberChainXyz/fphash-go/actions/workflows/test.yml/badge.svg)](https://github.com/CyberChainXyz/fphash-go/actions/workflows/test.yml)
+
 # fphash
 
 fphash is a variant of [Cryptonight-GPU](https://ryo-currency.com/cn-gpu/) algorithm, with parameters below:
