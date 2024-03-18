@@ -1,8 +1,8 @@
-package cngpugo
+package fphash
 
 // #cgo CXXFLAGS: -std=c++11 -mavx2 -msse2 -maes
 // #cgo LDFLAGS: -static-libstdc++ -static-libgcc
-// #include "cn-gpu.hxx"
+// #include "fphash.hxx"
 import "C"
 
 import (

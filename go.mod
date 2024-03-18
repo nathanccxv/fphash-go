@@ -1,3 +1,3 @@
-module github.com/nexis-dev/cn-gpu-go
+module github.com/CyberChainXyz/fphash-go
 
 go 1.21.0

@@ -1,4 +1,4 @@
-#include "cn-gpu.hxx"
+#include "fphash.hxx"
 #include "cn_slow_hash.hpp"
 
 void* new_ctx() {
