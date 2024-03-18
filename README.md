@@ -15,7 +15,7 @@ This project provides Go bindings for the original C++ implementation of the Cry
 To use these bindings in your Go project, import the package:
 
 ```go
-import "github.com/CyberChainXyz/fphash"
+import "github.com/CyberChainXyz/fphash-go"
 
 intput := []uint8{1, 2, 3, 4, 5}
 result := fphash.Hash(input) // [32]uint8
