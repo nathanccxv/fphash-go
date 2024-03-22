@@ -1,4 +1,5 @@
 [![Test](https://github.com/CyberChainXyz/fphash-go/actions/workflows/test.yml/badge.svg)](https://github.com/CyberChainXyz/fphash-go/actions/workflows/test.yml)
+[![Go Reference](https://pkg.go.dev/badge/github.com/CyberChainXyz/fphash-go.svg)](https://pkg.go.dev/github.com/CyberChainXyz/fphash-go)
 
 # fphash
 
