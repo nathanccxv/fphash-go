@@ -230,7 +230,9 @@ class cn_slow_hash
 	int variant_version()
 	{
 		int avx2_val = 0;
-		if(check_avx2) avx2_val = 10;
+#if defined(__AVX2__)
+		avx2_val = 10;
+#endif
 
 		if(VERSION <= 1)
 		{
