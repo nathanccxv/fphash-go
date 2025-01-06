@@ -110,7 +110,11 @@ inline bool check_avx2()
 #ifdef HAS_ARM_HW
 inline bool hw_check_aes()
 {
+#if defined(__APPLE__)
+	return true;
+#else
 	return (getauxval(AT_HWCAP) & HWCAP_AES) != 0;
+#endif
 }
 #endif
 
