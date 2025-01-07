@@ -107,15 +107,25 @@ inline bool check_avx2()
 }
 #endif
 
+#ifndef HAS_INTEL_HW
+inline bool check_avx2()
+{
+	return false;
+}
+#endif
+
 #ifdef HAS_ARM_HW
+#ifdef __APPLE__
 inline bool hw_check_aes()
 {
-#if defined(__APPLE__)
 	return true;
-#else
-	return (getauxval(AT_HWCAP) & HWCAP_AES) != 0;
-#endif
 }
+#else
+inline bool hw_check_aes()
+{
+	return (getauxval(AT_HWCAP) & HWCAP_AES) != 0;
+}
+#endif
 #endif
 
 #if !defined(HAS_INTEL_HW) && !defined(HAS_ARM_HW)
@@ -230,9 +240,7 @@ class cn_slow_hash
 	int variant_version()
 	{
 		int avx2_val = 0;
-#if defined(__AVX2__)
-		avx2_val = 10;
-#endif
+		if(check_avx2()) avx2_val = 10;
 
 		if(VERSION <= 1)
 		{
