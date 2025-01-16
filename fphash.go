@@ -9,6 +9,7 @@ package fphash
 import "C"
 
 import (
+	"runtime"
 	"sync"
 	"unsafe"
 )
@@ -17,11 +18,22 @@ type Ctx struct {
 	cn_ctx unsafe.Pointer
 }
 
+func (c *Ctx) finalizer() {
+	if c == nil || c.cn_ctx == nil {
+		return
+	}
+	C.del_ctx(c.cn_ctx)
+}
+
+func newCtx() any {
+	c := &Ctx{cn_ctx: C.new_ctx()}
+	runtime.SetFinalizer(c, (*Ctx).finalizer)
+	return c
+}
+
 // Ctx pool
 var ctxPool = sync.Pool{
-	New: func() any {
-		return &Ctx{cn_ctx: C.new_ctx()}
-	},
+	New: newCtx,
 }
 
 // Singleton ctx
