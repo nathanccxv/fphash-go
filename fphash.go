@@ -11,8 +11,20 @@ import "C"
 import (
 	"runtime"
 	"sync"
+	"sync/atomic"
 	"unsafe"
 )
+
+// For testing purposes
+var (
+	ctxCreationCount  int32
+	ctxFinalizerCount int32
+)
+
+// GetCtxStats returns the number of contexts created and finalized
+func GetCtxStats() (created, finalized int32) {
+	return atomic.LoadInt32(&ctxCreationCount), atomic.LoadInt32(&ctxFinalizerCount)
+}
 
 type Ctx struct {
 	cn_ctx unsafe.Pointer
@@ -22,10 +34,12 @@ func (c *Ctx) finalizer() {
 	if c == nil || c.cn_ctx == nil {
 		return
 	}
+	atomic.AddInt32(&ctxFinalizerCount, 1)
 	C.del_ctx(c.cn_ctx)
 }
 
 func newCtx() any {
+	atomic.AddInt32(&ctxCreationCount, 1)
 	c := &Ctx{cn_ctx: C.new_ctx()}
 	runtime.SetFinalizer(c, (*Ctx).finalizer)
 	return c
