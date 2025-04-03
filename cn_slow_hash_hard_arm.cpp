@@ -51,7 +51,6 @@
 #include "aux_hash.h"
 #include "cn_slow_hash.hpp"
 
-#ifdef HAS_ARM_HW
 extern const uint8_t saes_sbox[256];
 
 struct aeskeydata
@@ -398,9 +397,7 @@ void cn_slow_hash<MEMORY, ITER, VERSION>::hardware_hash(const void* in, size_t l
 	}
 }
 
-#endif // HAS_ARM_HW
 
-#ifdef HAS_ARM
 
 inline void prep_dv(cn_sptr& idx, int32x4_t& v, float32x4_t& n)
 {
@@ -570,7 +567,6 @@ void cn_slow_hash<MEMORY, ITER, VERSION>::inner_hash_3()
 	}
 }
 
-#if defined(__aarch64__)
 template <size_t MEMORY, size_t ITER, size_t VERSION>
 void cn_slow_hash<MEMORY, ITER, VERSION>::hardware_hash_3(const void* in, size_t len, void* pout)
 {
@@ -583,7 +579,6 @@ void cn_slow_hash<MEMORY, ITER, VERSION>::hardware_hash_3(const void* in, size_t
 	keccakf(spad.as_uqword());
 	memcpy(pout, spad.as_byte(), 32);
 }
-#endif
 
 template <size_t MEMORY, size_t ITER, size_t VERSION>
 void cn_slow_hash<MEMORY, ITER, VERSION>::software_hash_3(const void* in, size_t len, void* pout)
@@ -602,4 +597,3 @@ template class cn_v1_hash_t;
 template class cn_v2_hash_t;
 template class cn_v3_hash_t;
 template class cn_v4_hash_t;
-#endif
