@@ -5,7 +5,6 @@ package fphash
 // #cgo CXXFLAGS: -std=c++11 -mavx2 -msse2 -maes
 // #cgo !darwin LDFLAGS: -static-libstdc++ -static-libgcc
 // #cgo darwin LDFLAGS: -static-libstdc++
-// #cgo darwin,arm64 cn_slow_hash_hard_arm.cpp
 // #include "fphash.hxx"
 import "C"
 
