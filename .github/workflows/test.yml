@@ -19,7 +19,7 @@ jobs:
       - name: Install dependencies
         run: go get .
       - name: Build
-        run: go build -v ./...
+        run: go build -x ./...
       - name: Test with the Go CLI
         run: go test -v .
       - name: Bench with the Go CLI
